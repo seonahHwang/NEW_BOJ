@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 /*#include<iostream>
-#include <algorithm>
+#include <algorithm> # 이건 언제 사용되는 건가요?
 using namespace std;
 
 int main(){
@@ -30,7 +30,7 @@ int main(){
         scanf("%d", &arr[i]);
     }
     dp[0]=arr[0];
-    dp[1]=arr[1];
+    dp[1]=max(arr[0]+arr[1],arr[1]);
     dp[2]=max(arr[0]+arr[2],arr[1]+arr[2]);
     for(int i=3;i<n;i++){
         dp[i]=max(dp[i-3]+arr[i-1]+arr[i-2],dp[i-2]+arr[i]);
