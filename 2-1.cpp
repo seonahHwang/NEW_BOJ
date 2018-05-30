@@ -1,42 +1,44 @@
 #include<iostream>
-#include<cstring>
-#include<algorithm>
 using namespace std;
- 
-class makeOne{
-private:
-    int n;  //n
-    int arr[1000001];   //array
-public:
-    void setNum(){
-        cin >> n;
-        memset(arr, 0, sizeof(int) * (n+1));    //1부터 n까지 이므로 n+1.
-    }
-
-    void deleteDups(LinkedListNode)    
-    void solution(){
-        arr[1] = 0; //1일때는 횟수 0
-        
-        for(int i=2; i<=n; i++){
-            arr[i] = arr[i-1] + 1;  //규칙 3번 : 1을 뺀다
-            if(i%2 == 0){
-                arr[i] = min(arr[i], arr[i/2]+1);   //규칙 2번 : 2로 떨어지는 경우
-            }
-            if(i%3 == 0){
-                arr[i] = min(arr[i], arr[i/3]+1);   //규칙 1번 : 3로 떨어지는 경우
-            }
+class Node{
+    friend class List;
+    public:
+        Node(){
+            data=0;
+            next=NULL;
         }
+        Node(int i){
+            data=i;
+            next=NULL;
+        }
+    private:
+        Node *next;
+        int data;    
+};
+
+class List{
+    private:
+        Node *head;
+    public:
+        List(){
+            head=NULL;
+        };
+    List(Node *instertNode){
+        head=NULL;
+        insert(insertNode);
+    };
+    void insert(Node *insertNode);
+    void del(int delNum);       
+};
+
+void List::insert(Node *insertNode){
+    if(head==NULL){
+        head==insertNode;
     }
-    
-    void printMin(){
-        cout << arr[n];
+    else{
+        Node *current=head;
+        Node *beforeCurrent=NULL;
+        for(Node *ptr=head;ptr!=NULL;ptr=ptr->next) current=ptr;
+        current ->next=insertNode;
     }
 };
- 
-int main(void){
-    makeOne one;
-    one.setNum();
-    one.solution();
-    one.printMin();
-    return 0;
-}
